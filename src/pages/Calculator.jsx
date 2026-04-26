@@ -34,15 +34,17 @@ export default function Calculator() {
     const total = Math.round((basePrice + featuresPrice) * quality.multiplier);
 
     const message = [
-      `Hi! I'd like to get a quote for a project.`,
+      `Hi! I'd like to request a quote for a project.`,
       ``,
       `Project type: ${projectType?.label || 'Not selected'}`,
-      `Add-ons: ${features.length > 0 ? features.map(f => f.label).join(', ') : 'None'}`,
+      `Features: ${features.length > 0 ? features.map(f => f.label).join(', ') : 'Nothing'}`,
       `Quality: ${quality.label} (×${quality.multiplier})`,
       `Estimated budget: €${total.toLocaleString()}`,
     ].join('\n');
 
-    alert(message);
+    const phone = '358414994207';
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
   };
 
   return (
